@@ -35,19 +35,19 @@ Prior to running `pihole-cloudsync`, you must first create a new dedicated Git r
 2. Do `cd /usr/local/bin`.
 3. Install `pihole-cloudsync` with `sudo git clone https://github.com/stevejenkins/pihole-cloudsync.git`.
 4. Create your private local Git repo with `sudo git clone https://github.com/<yourusername>/my-pihole-lists.git` (paste the URL you copied from GitHub).
-5. If you're using a repo name other than `my-pihole-lists`, edit `/mnt/user/appdata/piholepihole-cloudsync/pihole-cloudsync` and edit the `personal_git_dir` variable to match your local Git repo location.
-6. If you want to enable **Shared Hosts** mode, edit `/mnt/user/appdata/piholepihole-cloudsync/pihole-cloudsync` and change the `enable_hosts` option to `on` (you could also use `1`, `y`, `yes`, or `true` in upper or lower case). Refer to the **Shared Hosts Mode** section below to add two required comment lines to your local Pi-hole's `/etc/hosts` file before proceeding to the next step and running `pihole-cloudsync` for the first time.
-7. Run `/mnt/user/appdata/piholepihole-cloudsync/pihole-cloudsync --initpush` to initialize the local Pi-hole in "Push" mode. It will grab your Primary Pi-hole's list files from `/etc/pihole` (as well as the designated portion of your `/etc/hosts` file if **Shared Hosts Mode** is enabled) and add them to your new local Git repo. The `--initpush` mode should only need to be run once on your Primary Pi-hole.
-8. Run `/mnt/user/appdata/pihole/pihole-cloudsync/pihole-cloudsync --push` to push/upload your Primary Pi-hole's lists from your local Git repo to your remote Git repo. You will have to manually enter your GitHub email address and password the first time you do this, but read below for how to save your login credentials so you can run this script unattended.
+5. If you're using a repo name other than `my-pihole-lists`, edit `/mnt/user/appdata/pihole/pihole-cloudsync/pihole-cloudsync` and edit the `personal_git_dir` variable to match your local Git repo location.
+6. If you want to enable **Shared Hosts** mode, edit `/mnt/user/appdata/pihole/pihole-cloudsync/pihole-cloudsync` and change the `enable_hosts` option to `on` (you could also use `1`, `y`, `yes`, or `true` in upper or lower case). Refer to the **Shared Hosts Mode** section below to add two required comment lines to your local Pi-hole's `/etc/hosts` file before proceeding to the next step and running `pihole-cloudsync` for the first time.
+7. Run `/mnt/user/appdata/pihole/pihole-cloudsync/pihole-cloudsync --initpush` to initialize the local Pi-hole in "Push" mode. It will grab your Primary Pi-hole's list files from `/etc/pihole` (as well as the designated portion of your `/etc/hosts` file if **Shared Hosts Mode** is enabled) and add them to your new local Git repo. The `--initpush` mode should only need to be run once on your Primary Pi-hole.
+8. Run `/mnt/user/appdata/pihole//pihole-cloudsync/pihole-cloudsync --push` to push/upload your Primary Pi-hole's lists from your local Git repo to your remote Git repo. You will have to manually enter your GitHub email address and password the first time you do this, but read below for how to save your login credentials so you can run this script unattended.
 
 **On all Secondary Pi-hole devices**
 1. Install Git (on Raspbian/Debian do `sudo apt-get install git`)
 2. Do `cd /usr/local/bin`
 3. Install `pihole-cloudsync` with `sudo git clone https://github.com/stevejenkins/pihole-cloudsync.git`
 4. Create your private local Git repo with `sudo git clone https://github.com/<yourusername>/my-pihole-lists.git` (paste the URL you copied from GitHub)
-5. If you're using a repo name other than `my-pihole-lists`, edit `/mnt/user/appdata/piholepihole-cloudsync/pihole-cloudsync` and edit the `personal_git_dir` variable to match your local Git repo location.
-6. If you want to enable **Shared Hosts** mode, edit `/mnt/user/appdata/piholepihole-cloudsync/pihole-cloudsync` and change the `enable_hosts` option to `on` (you could also use `1`, `y`, `yes`, or `true` in upper or lower case). Make sure you've added the necessary comments to your Primary Pi-hole's `/etc/hosts` file (explained in the **Shared Hosts Mode** section of this README) before proceeding to the next step and running `pihole-cloudsync` for the first time.
-6. Run `/mnt/user/appdata/piholepihole-cloudsync/pihole-cloudsync --initpull` to initialize the local Pi-hole in Pull/Download mode. You will have to manually enter your GitHub email address and password the first time you do this, but read below for how to save your login credentials so you can run this script unattended. The `--initpull` option will also perform your first pull automatically and only needs to be run once on each Secondary Pi-hole. All future pulls can be performed with `/mnt/user/appdata/piholepihole-cloudsync/pihole-cloudsync --pull`.
+5. If you're using a repo name other than `my-pihole-lists`, edit `/mnt/user/appdata/pihole/pihole-cloudsync/pihole-cloudsync` and edit the `personal_git_dir` variable to match your local Git repo location.
+6. If you want to enable **Shared Hosts** mode, edit `/mnt/user/appdata/pihole/pihole-cloudsync/pihole-cloudsync` and change the `enable_hosts` option to `on` (you could also use `1`, `y`, `yes`, or `true` in upper or lower case). Make sure you've added the necessary comments to your Primary Pi-hole's `/etc/hosts` file (explained in the **Shared Hosts Mode** section of this README) before proceeding to the next step and running `pihole-cloudsync` for the first time.
+6. Run `/mnt/user/appdata/pihole/pihole-cloudsync/pihole-cloudsync --initpull` to initialize the local Pi-hole in Pull/Download mode. You will have to manually enter your GitHub email address and password the first time you do this, but read below for how to save your login credentials so you can run this script unattended. The `--initpull` option will also perform your first pull automatically and only needs to be run once on each Secondary Pi-hole. All future pulls can be performed with `/mnt/user/appdata/pihole/pihole-cloudsync/pihole-cloudsync --pull`.
 7. Running `pihole-cloudsync --pull` will pull/download your Primary Pi-hole's lists from your remote Git repo to your Secondary Pi-hole's local Git repo. The `--pull` option will automatically copy the downloaded file(s) to your Pi-hole directory and tell Pi-hole to do a `pihole -g` command to update its lists.
 
 ## Shared Hosts Mode
@@ -114,14 +114,14 @@ When `pihole-cloudsync` runs in **Pull** mode with the Shared Hosts mode enabled
 
 **IMPORTANT:** You must enter the comments exactly as shown, since `pihole-cloudsync` searches for those exact comments in order to syncronize properly.
 
-Enable Shared Hosts mode by editing `/mnt/user/appdata/piholepihole-cloudsync/pihole-cloudsync`. Change the `enable_hosts` option to `on` (you could also use `1`, `y`, `yes`, or `true` in upper or lower case). Make sure you've added the necessary comments to your Primary Pi-hole's `/etc/hosts` file running `pihole-cloudsync` in Shared Hosts mode.
+Enable Shared Hosts mode by editing `/mnt/user/appdata/pihole/pihole-cloudsync/pihole-cloudsync`. Change the `enable_hosts` option to `on` (you could also use `1`, `y`, `yes`, or `true` in upper or lower case). Make sure you've added the necessary comments to your Primary Pi-hole's `/etc/hosts` file running `pihole-cloudsync` in Shared Hosts mode.
 
-If you decide to enable Shared Hosts mode after you've already been running `pihole-cloudsync` for a while, simply re-run in `--initpush` or `--initpull` mode (depending on whether you are configuring a Primary or Secondary Pi-hole) after setting `enable_hosts` to `on` in  `/mnt/user/appdata/piholepihole-cloudsync/pihole-cloudsync`.
+If you decide to enable Shared Hosts mode after you've already been running `pihole-cloudsync` for a while, simply re-run in `--initpush` or `--initpull` mode (depending on whether you are configuring a Primary or Secondary Pi-hole) after setting `enable_hosts` to `on` in  `/mnt/user/appdata/pihole/pihole-cloudsync/pihole-cloudsync`.
 
 ## Alternative Configuration: All Secondary (no Primary) Pi-holes
 Once you've successfully pushed your Primary Pi-hole's lists to your remote Git repo, you could optionally choose to edit/manage your whitelist, blacklists, and regex files directly on your Git repo using your cloud-based Git provider's built-in editing tools. If you go this route, you'll need to re-configure what was previously your Primary Pi-hole to run in Pull mode (which will turn it into a Secondary). Do:
 
-`/mnt/user/appdata/piholepihole-cloudsync/pihole-cloudsync --initpull`
+`/mnt/user/appdata/pihole/pihole-cloudsync/pihole-cloudsync --initpull`
 
 That will re-initialize the local Pi-hole in Pull/Download mode. If you had previously automated your Primary Pi-hole's periodic pushes, be sure to edit your `crontab` so that `pihole-cloudsync` runs in Pull mode instead of Push mode.
 
@@ -132,7 +132,7 @@ In order to automate or run `pihole-cloudsync` unattended, you will need to eith
 
 The SSH key approach is for more advanced users who don't need me to explain how to do it. To store your Git credentials locally, do the following on each Pi-hole:
 
-`cd /mnt/user/appdata/piholemy-pihole-lists`
+`cd /mnt/user/appdata/pihole/my-pihole-lists`
 
 `sudo git config --global credential.helper store`
 
@@ -149,11 +149,11 @@ Once each Pi-hole's local Git repo has been configured to save your login creden
 
 Once you can successfully run `pihole-cloudsync --push` from the command line on your Primary Pi-hole, do `crontab -e` (or `sudo crontab -e` if you're not logged in as the root user) and create a cron entry such as:
 
-`00 01,07,13,19 * * * sudo /mnt/user/appdata/piholepihole-cloudsync/pihole-cloudsync --push > /dev/null 2>&1 #Push Master Pi-hole Lists to remote Git repo`
+`00 01,07,13,19 * * * sudo /mnt/user/appdata/pihole/pihole-cloudsync/pihole-cloudsync --push > /dev/null 2>&1 #Push Master Pi-hole Lists to remote Git repo`
 
 And once you can successfully run `pihole-cloudsync --pull` from the command line on each of your Secondary Pi-holes, do `sudo crontab -e` and create a cron entry that runs 5 minutes after your Primary pushes any changes, such as:
 
-`05 01,07,13,19 * * * sudo /mnt/user/appdata/piholepihole-cloudsync/pihole-cloudsync --pull > /dev/null 2>&1 #Pull Master Pi-hole Lists from remote Git repo`
+`05 01,07,13,19 * * * sudo /mnt/user/appdata/pihole/pihole-cloudsync/pihole-cloudsync --pull > /dev/null 2>&1 #Pull Master Pi-hole Lists from remote Git repo`
 
 **NOTE:** On Raspian, the script won't execute via cron without the `sudo` command (as shown above). If you're having trouble getting the script to run unattended on Raspian, try including `sudo` in the cron command.
 

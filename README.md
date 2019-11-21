@@ -1,6 +1,7 @@
 # pihole-cloudsync
 A script to help synchronize <a target="_blank" 
 href="https://pi-hole.net/">Pi-hole</a> blocklist, blacklist, whitelist, regex (and optionally `/etc/hosts` files) across multiple Pi-holes using a Git repository.
+This fork has been modified to work with the pihole docker container in Unraid
 
 # Why pihole-cloudsync?
 I was running six Pi-holes on three different networks at three different physical locations. I wanted all six Pi-holes to share the same blocklists, blacklists, whitelists, and regex files, but it was time-consuming to manually synchronize all of them (modify the local Pi-holes, VPN into the second network and modify those, then VPN into the third network and modify those). I also wanted the ability to share a common section of `/etc/hosts` between multiple Pi-holes so that the Pi-hole UI stats display the proper local hostnames instead of IP addresses.

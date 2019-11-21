@@ -30,8 +30,8 @@ update='August 10, 2019'
 # Project Home: https://github.com/stevejenkins/pihole-cloudsync
 ###########################################################################
 # CONSTANTS
-personal_git_dir='/usr/local/bin/my-pihole-lists'
-pihole_dir='/etc/pihole'
+personal_git_dir='/mnt/user/appdata/pihole/my-pihole-lists'
+pihole_dir='/mnt/user/appdata/pihole/pihole'
 ad_list='adlists.list'
 black_list='black.list'
 blacklist_list='blacklist.txt'
